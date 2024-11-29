@@ -3,7 +3,7 @@ const indexRouter = require('./routers/indexRouter');
 const newRouter = require('./routers/newRouter');
 
 const app = express();
-const PORT = (process.env.PORT || 3000); 
+const PORT = (process.env.PORT || 8000); 
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
