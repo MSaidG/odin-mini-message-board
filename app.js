@@ -1,6 +1,7 @@
 const express = require('express');
 const indexRouter = require('./routers/indexRouter');
-const newRouter = require('./routers/newRouter');
+const usersRouter = require('./routers/usersRouter');
+const {body, validationResult} = require('express-validator');
 
 const app = express();
 const PORT = (process.env.PORT || 8000); 
@@ -10,10 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.use("/", indexRouter);
-app.use("/new", newRouter);
-
-
-
+app.use("/users", usersRouter);
 
 app.use((err, req, res, next) => { 
   console.error(err.stack);

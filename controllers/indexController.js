@@ -2,19 +2,19 @@ const messages = require('../models/messages');
 const uuid = require('uuid');
 
 const getPage = function(req, res) {
-  res.render('index', {
+  res.render('index/index', {
     messages : messages
   });
 }
 
 const getNew = function(req, res) {
-  res.render('new');
+  res.render('index/new');
 }
 
 const getMessage = function(req, res) {
   const id = req.params.id;
   const message = messages.find((message) => message.id === id);
-  res.render('message', { message : message } );
+  res.render('index/message', { message : message } );
 }
 
 
