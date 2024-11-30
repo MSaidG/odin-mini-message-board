@@ -1,7 +1,10 @@
 const messages = require('../models/messages');
-const uuid = require('uuid');
+const db = require('../db/queries');
+const pool = require('../db/pool');
 
-const getPage = function(req, res) {
+
+const getPage = async function(req, res) {
+  const messages = await db.selectAllMessages();
   res.render('index/index', {
     messages : messages
   });
@@ -11,20 +14,18 @@ const getNew = function(req, res) {
   res.render('index/new');
 }
 
-const getMessage = function(req, res) {
-  const id = req.params.id;
-  const message = messages.find((message) => message.id === id);
+const getMessage = async function(req, res) {
+  const message = await db.selectMessageById(req.params.id);
   res.render('index/message', { message : message } );
 }
 
 
-const postNew = function(req, res) {
-  messages.push({
-    id: uuid.v4(),
-    text: req.body.message,
-    user: req.body.user,
-    added: new Date(),
-  });
+const postNew = async function(req, res) {
+  const message ={
+    text: req.body.text,
+    username: req.body.username,
+  };
+  await db.insertMessage(message);
   res.redirect('/');
 }
 

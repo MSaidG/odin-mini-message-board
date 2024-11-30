@@ -12,7 +12,7 @@
     <% messages.forEach((message) => { %>
       <div class="message">
         <h2><%= message.text %></h2>
-        <p><%= message.user %></p>
+        <p><%= message.username %></p>
         <p><%= message.added %></p>
         <a href="/message/<%= message.id %>">View Message</a>
       </div>
